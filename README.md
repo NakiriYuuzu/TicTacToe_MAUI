@@ -4,6 +4,17 @@
 ## Introduction
 This is a Tic-Tac-Toe game project developed using .NET MAUI (Multi-platform App UI). The game supports both single-player and two-player modes.
 
+## Screenshots & Demo
+<div style="overflow-x: auto;">
+    <table>
+    <tr>
+        <td><img src="documents/image/Screenshot_1694700153.png" width="300"></td>
+        <td><img src="documents/image/Screenshot_1694700209.png" width="300"></td>
+        <td><img src="documents/image/Screenshot_1694700221.png" width="300"></td>
+    </tr>
+    </table>
+</div>
+
 ## Features
 - **Single-Player Mode**: Play against a smart Bot.
 - **Two-Player Mode**: Play face-to-face with friends or family.
