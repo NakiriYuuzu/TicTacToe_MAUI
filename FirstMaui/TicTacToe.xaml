@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FirstMaui.TicTacToe"
+             xmlns:viewModels="clr-namespace:FirstMaui.ViewModel"
+             x:DataType="viewModels:TicTacToeViewModel"
+             xmlns:models="clr-namespace:FirstMaui.model"
+             Title="Yuuzu TicTacToe">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout VerticalOptions="Center" Padding="16" Spacing="16">
+                <Label
+                    x:Name="LabelTitle"
+                    Text="Current Mode"
+                    TextColor="White"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontSize="32"
+                    HorizontalOptions="Center" />
+                
+                <Label
+                    Text="{Binding PlayerText}"
+                    TextColor="White"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontSize="28"
+                    HorizontalOptions="Center" />
+                
+                <Grid ColumnDefinitions="5*, 5*" ColumnSpacing="16">
+                    <Frame Grid.Column="0" BackgroundColor="{Binding Player1BackgroundColor}">
+                        <Label Text="{Binding FirstPlayerBoard}" TextColor="White" FontSize="28" />
+                    </Frame>
+                    <Frame Grid.Column="1" BackgroundColor="{Binding Player2BackgroundColor}">
+                        <Label Text="{Binding SecondPlayerBoard}" TextColor="White" FontSize="28" />
+                    </Frame>
+                </Grid>
+                
+                <CollectionView ItemsSource="{Binding BoardsList}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Span="3" Orientation="Vertical" VerticalItemSpacing="16" />
+                    </CollectionView.ItemsLayout>
+                    
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:GameBoard">
+                            <Frame 
+                                BackgroundColor="White" 
+                                Padding="0" 
+                                CornerRadius="16" 
+                                HeightRequest="80" 
+                                WidthRequest="80" >
+                                
+                                <Label 
+                                    Text="{Binding SelectedType}"
+                                    TextColor="Black"
+                                    FontSize="28"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="Center"/>
+                                
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding ClickCommand, Source={x:RelativeSource AncestorType={x:Type viewModels:TicTacToeViewModel}}}"
+                                        CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                                
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+                <Label Text="{Binding ResultText}" TextColor="White" FontSize="32" HorizontalOptions="Center" />
+                <Button Text="Reset" HeightRequest="50" WidthRequest="200" Command="{Binding SetupOrResetGameBoardCommand}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
